@@ -1,0 +1,7 @@
+*.py[cod]
+*.tar
+.idea/
+.tox/
+.config
+/static
+__pycache__
