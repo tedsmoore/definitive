@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <table class="w3-table-all" style="margin:auto; max-width:992px;">
+    <thead>
+      <th>Rank</th>
+      <th>Item</th>
+    </thead>
+    {% for item in items %}
+      <tr>
+        <td>1</td>
+        <td><img src="{{ item.image.url }}"></td>
+      </tr>
+    {% endfor %}
+  </table>
+
+{% endblock %}
