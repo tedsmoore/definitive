@@ -4,8 +4,8 @@ from django.shortcuts import render
 from definitive.models import RankList
 
 
-def index(request):
-    items = RankList.objects.first().items.all()
+def rankview(request, list_id):
+    items = RankList.objects.get(id=list_id).items.all()
     context = {
         'items': items
     }

@@ -5,11 +5,37 @@
     <thead>
       <th>Rank</th>
       <th>Item</th>
+      <th>Score</th>
+      <th>Wins</th>
+      <th>Losses</th>
     </thead>
     {% for item in items %}
       <tr>
-        <td>1</td>
-        <td><img src="{{ item.image.url }}"></td>
+        <td>
+          <div class="rank w3-cell w3-padding w3-cell-middle" style="height:300px">
+            1
+          </div>
+        </td>
+        <td>
+          <div class="w3-cell w3-padding w3-cell-middle" style="height:300px">
+            <img src="{{ item.image.url }}" width="250px">
+          </div>
+        </td>
+        <td>
+          <div class="score w3-cell w3-padding w3-cell-middle" style="height:300px">
+            124.5
+          </div>
+        </td>
+        <td>
+          <div class="wins w3-cell w3-padding w3-cell-middle" style="height:300px">
+            124.5
+          </div>
+        </td>
+        <td>
+          <div class="losses w3-cell w3-padding w3-cell-middle" style="height:300px">
+            124.5
+          </div>
+        </td>
       </tr>
     {% endfor %}
   </table>
