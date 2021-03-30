@@ -1,3 +1,5 @@
+import uuid
+
 from django.db import models
 
 from definitive.rank import PageRank
@@ -29,9 +31,14 @@ class RankItem(models.Model):
 
 class RankResponse(models.Model):
     user = models.ForeignKey(User, related_name='responses', on_delete=models.SET_NULL, null=True, blank=True)
+    response_id = models.UUIDField(
+        default=uuid.uuid4, editable=False, help_text='unique id for this respondent')
     left = models.ForeignKey(RankItem, related_name='left_battles', on_delete=models.CASCADE)
     right = models.ForeignKey(RankItem, related_name='right_battles', on_delete=models.CASCADE)
     winner = models.ForeignKey(RankItem, related_name='wins', on_delete=models.CASCADE, null=True, blank=True)
+
+    class Meta:
+        unique_together = ('response_id', 'left', 'right')
 
     def __str__(self):
         return f"[{self.left.id}, {self.right.id}, {self.winner.id}]"
@@ -39,3 +46,10 @@ class RankResponse(models.Model):
     @property
     def result(self):
         return [self.left.id, self.right.id, self.winner.id]
+
+    def save(self, *args, **kwargs):
+        if not self.user:
+            self.response_id = uuid.uuid4()
+        else:
+            self.response_id = self.user.id
+        super().save(*args, **kwargs)
