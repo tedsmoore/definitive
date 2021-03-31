@@ -19,6 +19,15 @@ class RankList(models.Model):
     def final_page_rank(self):
         return PageRank(list(self.items.values_list('id', flat=True)), self.resp_list())
 
+    def items_in_rank_order(self):
+        final_rank = self.final_page_rank().all_output()
+        rank = 1
+        for item in final_rank:
+            item['rank'] = rank
+            item['obj'] = self.items.get(id=item['item'])
+            rank += 1
+        return final_rank
+
 
 class RankItem(models.Model):
     label = models.CharField(max_length=100)
