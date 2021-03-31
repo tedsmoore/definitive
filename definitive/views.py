@@ -1,8 +1,14 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.db.models import Max
 
 from definitive.models import RankList
 from definitive.forms import AddRankItemForm
+
+
+def index(request):
+    list_id = RankList.objects.aggregate(Max('id'))['id__max']
+    return redirect('ranklist', list_id)
 
 
 def rankview(request, list_id):

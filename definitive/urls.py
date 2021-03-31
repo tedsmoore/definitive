@@ -1,15 +1,10 @@
-from django.urls import path
+from django.urls import path, reverse
+from django.views.generic import RedirectView
 
 from . import views
 
 urlpatterns = [
-    path('ranks/<int:list_id>/', views.rankview, name='index'),
+    path('', views.index, name='index'),
+    path('ranks/<int:list_id>/', views.rankview, name='ranklist'),
     path('ranks/<int:list_id>/add-item/', views.new_item, name='new-item')
 ]
-
-# if settings.DEBUG:
-#     urlpatterns += [
-#         re_path(r'^media/(?P<path>.*)$', serve, {
-#             'document_root': settings.MEDIA_ROOT,
-#         }),
-#     ]
