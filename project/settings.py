@@ -31,7 +31,8 @@ SECRET_KEY = env.get("DJANGO_SECRET_KEY", 'b7)(vvrx_z*9u@$&nt0*!(i3#sfme9@kpski4
 DEBUG = env.get("DEBUG", False)
 
 ALLOWED_HOSTS = [
-    "127.0.0.1"
+    "127.0.0.1",
+    "174.138.49.149"
 ]
 
 
