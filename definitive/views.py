@@ -6,11 +6,13 @@ from definitive.forms import AddRankItemForm
 
 
 def rankview(request, list_id):
-    items = RankList.objects.get(id=list_id).items.all()
+    ranklist = RankList.objects.get(id=list_id)
+    items = ranklist.items_in_rank_order()
     context = {
+        'title': ranklist.name,
         'items': items
     }
-    return render(request, 'ranklist.html', context)
+    return render(request, 'ranklist_new.html', context)
 
 
 def new_item(request, list_id):

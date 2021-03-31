@@ -1,7 +1,17 @@
 {% extends 'base.html' %}
 
+{% block page_style %}
+  <style>
+  table { height: 1px; } /* Will be ignored, don't worry. */
+  tr { height: 100%; }
+  td { height: 100%; }
+  td > div { height: 100%; }
+  </style>
+{% endblock %}
+
 {% block content %}
-  <table class="w3-table-all" style="margin:auto; max-width:992px;">
+<div class="content w3-padding-top-24" style="margin-top:54px;">
+  <table class="w3-table-all w3-padding-top-24" style="margin:auto; max-width:992px;">
     <thead>
       <th>Rank</th>
       <th>Item</th>
@@ -12,32 +22,32 @@
     {% for item in items %}
       <tr>
         <td>
-          <div class="rank w3-cell w3-padding w3-cell-middle" style="height:300px">
-            1
+          <div class="rank w3-cell w3-padding w3-cell-middle" >
+            {{ item.rank }}
           </div>
         </td>
         <td>
-          <div class="w3-cell w3-padding w3-cell-middle" style="height:300px">
-            <img src="{{ item.image.url }}" width="250px">
+          <div class="w3-cell w3-cell-middle">
+            <img src="{{ item.obj.image.url }}" class="w3-image" style="max-height:250px; margin:auto;">
           </div>
         </td>
         <td>
-          <div class="score w3-cell w3-padding w3-cell-middle" style="height:300px">
+          <div class="score w3-cell w3-padding w3-cell-middle" >
             124.5
           </div>
         </td>
         <td>
-          <div class="wins w3-cell w3-padding w3-cell-middle" style="height:300px">
+          <div class="wins w3-cell w3-padding w3-cell-middle" >
             124.5
           </div>
         </td>
         <td>
-          <div class="losses w3-cell w3-padding w3-cell-middle" style="height:300px">
+          <div class="losses w3-cell w3-padding w3-cell-middle" >
             124.5
           </div>
         </td>
       </tr>
     {% endfor %}
   </table>
-
+</div>
 {% endblock %}
