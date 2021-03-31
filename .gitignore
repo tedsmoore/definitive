@@ -3,5 +3,4 @@
 .idea/
 .tox/
 .config
-/project/static
 __pycache__
