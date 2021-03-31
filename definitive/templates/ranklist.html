@@ -1,53 +1,97 @@
 {% extends 'base.html' %}
 
+{% block title %}Definitive | {{ title }}{% endblock %}
+
 {% block page_style %}
   <style>
-  table { height: 1px; } /* Will be ignored, don't worry. */
-  tr { height: 100%; }
-  td { height: 100%; }
-  td > div { height: 100%; }
+  div.content {
+      max-width: 992px;
+  }
+  div.ranklist-header {
+      margin: auto;
+      color: #9c27b0;
+      font-weight: bold;
+      font-size: 36px;
+  }
+  div.rank {
+      width: 10%;
+      font-size: 2rem;
+  }
+  div.item-image{
+      width: 25%;
+  }
+  div.item-label{
+      width: 25%;
+      font-size: 2rem;
+  }
+  div.item-score {
+      font-size: 2rem;
+      font-weight: bold;
+      color: orangered;
+  }
+  div.cell-label {
+      font-size: 1rem;
+      font-style: italic;
+      font-weight: bold;
+      color: #9c27b0;
+  }
+  div.item-record {
+      font-size: 2rem;
+      color: orangered;
+  }
+  div.cell-label {
+      font-size: 1rem;
+      font-style: italic;
+      font-weight: bold;
+  }
+  img.item-image {
+      max-width: 200px;
+      min-width: 25px;
+  }
+
   </style>
 {% endblock %}
 
 {% block content %}
-<div class="content w3-padding-top-24" style="margin-top:54px;">
-  <table class="w3-table-all w3-padding-top-24" style="margin:auto; max-width:992px;">
-    <thead>
-      <th>Rank</th>
-      <th>Item</th>
-      <th>Score</th>
-      <th>Wins</th>
-      <th>Losses</th>
-    </thead>
+<div class="content w3-padding-top-24" style="margin:54px auto;">
+
+  <div class="ranklist-header w3-padding w3-container w3-center">
+    {{ title }}
+  </div>
+
+  <div class="ranklist w3-container w3-border w3-border-purple" style="margin:auto;">
+
+    {# -- header row -- #}
+
+    {# -- item rows -- #}
+
     {% for item in items %}
-      <tr>
-        <td>
-          <div class="rank w3-cell w3-padding w3-cell-middle" >
-            {{ item.rank }}
-          </div>
-        </td>
-        <td>
-          <div class="w3-cell w3-cell-middle">
-            <img src="{{ item.obj.image.url }}" class="w3-image" style="max-height:250px; margin:auto;">
-          </div>
-        </td>
-        <td>
-          <div class="score w3-cell w3-padding w3-cell-middle" >
-            124.5
-          </div>
-        </td>
-        <td>
-          <div class="wins w3-cell w3-padding w3-cell-middle" >
-            124.5
-          </div>
-        </td>
-        <td>
-          <div class="losses w3-cell w3-padding w3-cell-middle" >
-            124.5
-          </div>
-        </td>
-      </tr>
+    <div class="w3-row w3-cell-row w3-padding-24 w3-border-bottom w3-border-purple">
+      <div class="rank w3-container w3-cell w3-cell-middle w3-center">
+        {{ item.rank }}
+      </div>
+      <div class="item-image w3-container w3-cell w3-cell-middle w3-center">
+        <img src="{{ item.obj.image.url }}" class="w3-image">
+      </div>
+      <div class="item-label w3-cell w3-cell-middle w3-center">
+        {{ item.obj.label }}
+      </div>
+      <div class="w3-row w3-cell w3-cell-row w3-cell-middle">
+        <div class="item-score w3-third w3-cell w3-cell-middle w3-center">
+          <div class="cell-label">score</div>
+        {{ item.score|floatformat:"0" }}
+        </div>
+        <div class="item-record w3-third w3-cell w3-cell-middle w3-center">
+          <div class="cell-label">wins</div>
+          {{ item.wins }}
+        </div>
+        <div class="item-record w3-third w3-cell w3-cell-middle w3-center">
+          <div class="cell-label">losses</div>
+          {{ item.losses }}
+        </div>
+      </div>
+    </div>
     {% endfor %}
-  </table>
+  </div>
 </div>
 {% endblock %}

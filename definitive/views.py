@@ -18,7 +18,7 @@ def rankview(request, list_id):
         'title': ranklist.name,
         'items': items
     }
-    return render(request, 'ranklist_new.html', context)
+    return render(request, 'ranklist.html', context)
 
 
 def new_item(request, list_id):
