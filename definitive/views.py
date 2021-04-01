@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from django.db.models import Max
 
 from definitive.models import RankList
@@ -18,9 +19,10 @@ def rankview(request, list_id):
         'title': ranklist.name,
         'items': items
     }
-    return render(request, 'ranklist.html', context)
+    return render(request, 'definitive/ranklist.html', context)
 
 
+@login_required
 def new_item(request, list_id):
     rank_list =RankList.objects.get(id=list_id)
     form = AddRankItemForm
@@ -28,6 +30,12 @@ def new_item(request, list_id):
         'form': form,
         'rank_list': rank_list
     }
-    return render(request, 'new_item.html', context)
+    return render(request, 'definitive/new_item.html', context)
 
 
+def pick_a_winner_view(request, list_id):
+    return render(request, '')
+
+
+def awesome_baby(request):
+    return render(request, 'definitive/static_xmpl.html')

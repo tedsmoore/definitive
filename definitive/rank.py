@@ -1,5 +1,4 @@
 import numpy as np
-from random import shuffle
 from collections import OrderedDict
 
 
@@ -153,49 +152,3 @@ class PageRank(object):
             win_loss_table.append(item_data)
 
         return win_loss_table
-
-
-def create_matchup_data():
-    # A helper fcn to create some fake user data
-
-    items = [2, 3, 4, 5, 6, 7, 8, 9]
-
-    matchup_results = []
-    a = {2: 0, 3: 23, 4: 27, 5: 19, 6: 21, 7: 11, 8: 17, 9: 13}
-    b = {2: 16, 3: 0, 4: 11, 5: 6, 6: 15, 7: 25, 8: 11, 9: 12}
-    c = {2: 16, 3: 14, 4: 0, 5: 11, 6: 10, 7: 13, 8: 17, 9: 13}
-    d = {2: 15, 3: 22, 4: 32, 5: 0, 6: 21, 7: 22, 8: 25, 9: 22}
-    e = {2: 28, 3: 19, 4: 18, 5: 30, 6: 0, 7: 22, 8: 25, 9: 29}
-    f = {2: 20, 3: 18, 4: 13, 5: 8, 6: 23, 7: 0, 8: 16, 9: 15}
-    g = {2: 27, 3: 26, 4: 26, 5: 29, 6: 25, 7: 20, 8: 0, 9: 28}
-    h = {2: 13, 3: 21, 4: 18, 5: 14, 6: 11, 7: 25, 8: 19, 9: 0}
-    all_dicts = [a, b, c, d, e, f, g, h]
-
-    for wins_dict in all_dicts:
-        dict_name_index = all_dicts.index(wins_dict)
-        dict_name = items[dict_name_index]
-        for opponent in wins_dict:
-            repeats = wins_dict[opponent]
-            repetition = 0
-            while repetition < repeats:
-                matchup = [dict_name, opponent, dict_name]
-                matchup_results.append(matchup)
-                repetition += 1
-
-    shuffle(matchup_results)
-    participant_matchup_results = []
-    start_index = 0
-    end_index = 10
-
-    while end_index < len(matchup_results):
-        sublist = matchup_results[start_index:end_index + 1]
-        participant_matchup_results.append(sublist)
-        start_index += 11
-        end_index += 11
-
-    return items, participant_matchup_results
-
-
-if __name__ == "__main__":
-    example_items, participant_results = create_matchup_data()
-    pass
