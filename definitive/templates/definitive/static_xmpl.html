@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_style %}
+  <style>
+  div.content {
+      max-width: 992px;
+      margin:54px auto;
+  }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <div class="content w3-blue w3-center">
+    <img src="{% static 'img/baby.jpeg' %}" style="margin:auto;">
+  </div>
+{% endblock %}
