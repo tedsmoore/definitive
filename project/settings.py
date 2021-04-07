@@ -32,9 +32,10 @@ DEBUG = env.get("DEBUG", False)
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
-    "174.138.49.149"
+    "174.138.49.149",
+    "138.197.50.21",
+    "definitive.quizitive.com"
 ]
-
 
 # Application definition
 
