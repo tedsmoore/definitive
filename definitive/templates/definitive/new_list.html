@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block page_style %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+{% endblock %}
+
+{% block content %}
+
+  <div class="content w3-padding-top-24">
+    <br/><br/>
+    <div class="w3-card w3-container w3-padding" style="width:50%;margin:auto">
+      <h3>Create a new list</h3>
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+  </div>
+
+  <script>
+
+
+  </script>
+
+{% endblock %}
+
+{% block scripts %}
+  <script>
+  flatpickr("#id_open_until", {enableTime: true, dateFormat: "Y-m-d H:i"});
+  </script>
+
+{% endblock %}

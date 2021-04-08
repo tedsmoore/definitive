@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block scripts %}
+  <script src="{% static 'js/get_data.js' %}"></script>
+
+{% endblock %}
+
+{% block content %}
+  <br/><br/><br/>
+  <button onclick="get_data('{% url 'data-only-view' 1 %}')">click me for data</button>
+  <br/><br/>
+  <div id=data_div></div>
+
+{% endblock %}
+

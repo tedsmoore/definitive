@@ -1,4 +1,5 @@
 import uuid
+from datetime import datetime
 
 from django.db import models
 
@@ -9,6 +10,7 @@ from users.models import CustomUser as User
 class RankList(models.Model):
     name = models.CharField(max_length=100)
     owner = models.ForeignKey(User, related_name='rank_lists', on_delete=models.CASCADE)
+    open_until = models.DateTimeField(default=datetime.now)
 
     def __str__(self):
         return self.name
