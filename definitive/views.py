@@ -94,7 +94,7 @@ class VoteView(View):
 
     def post(self, request, list_id, *args, **kwargs):
         if request.user.is_authenticated:
-            user = CustomUser.objects.get(request.user.id)
+            user = CustomUser.objects.get(id=request.user.id)
         else:
             user = None
         left = request.POST.get('left')
