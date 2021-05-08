@@ -24,6 +24,7 @@ def rankview(request, list_id):
     items = ranklist.items_in_rank_order()
     context = {
         'title': ranklist.name,
+        'list_id': list_id,
         'items': items
     }
     return render(request, 'definitive/ranklist.html', context)
@@ -84,6 +85,7 @@ class VoteView(View):
         while item_2 == item_1:
             item_2 = self.random_item(ranklist)
         context = {
+            'title': ranklist.name,
             'list_id': list_id,
             'item_1': item_1,
             'item_2': item_2

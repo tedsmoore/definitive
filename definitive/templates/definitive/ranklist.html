@@ -48,5 +48,11 @@
     </div>
     {% endfor %}
   </div>
+  <div class="content w3-padding-top-24 w3-center">
+    <a class="w3-button w3-orange w3-round-xxlarge" style="width:120px;"
+      href="{% url 'vote' list_id=list_id %}">
+      Vote!
+    </a>
+  </div>
 </div>
 {% endblock %}

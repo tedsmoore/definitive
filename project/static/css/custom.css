@@ -44,6 +44,10 @@ img.item-image {
     min-width: 25px;
 }
 
+form.vote-container:hover {
+    /*border: 3px #5f71c5 solid!important;*/
+    box-shadow: 4px 4px 4px lightgrey ;
+}
 .vote-item-img {
     width: 25%;
 }

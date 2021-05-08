@@ -10,7 +10,7 @@
 {% block content %}
   <div class="content w3-padding-top-24">
     <div class="w3-cell-row" style="height: 300px;">
-      <form class="w3-cell w3-cell-middle w3-center w3-border w3-round w3-margin"
+      <form class="vote-container w3-cell w3-mobile w3-cell-middle w3-center w3-border w3-round w3-margin"
         action="{% url 'vote' list_id %}"
         method="post">
         {% csrf_token %}
@@ -28,11 +28,11 @@
       </button>
       </form>
 
-      <div class="w3-cell w3-cell-middle w3-center w3-margin" style="width: 10%">
+      <div class="w3-cell w3-mobile w3-cell-middle w3-center w3-margin" style="width: 10%">
         - OR -
       </div>
 
-      <form class="w3-cell w3-cell-middle w3-center w3-border w3-round w3-margin"
+      <form class="vote-container w3-cell w3-mobile w3-cell-middle w3-center w3-border w3-round w3-margin"
         action="{% url 'vote' list_id %}"
         method="post">
         {% csrf_token %}
@@ -51,5 +51,11 @@
       </form>
       </a>
     </div>
+  </div>
+  <div class="content w3-padding-top-24 w3-center">
+    <a class="w3-button w3-orange w3-round-xxlarge"
+      href="{% url 'ranklist' list_id=list_id %}">
+      See the rankings!
+    </a>
   </div>
 {% endblock %}
