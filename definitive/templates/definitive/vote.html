@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Definitive | {{ title }}{% endblock %}
+
+{% block page_style %}
+  <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="content w3-padding-top-24">
+    <div class="w3-cell-row" style="height: 300px;">
+      <form class="w3-cell w3-cell-middle w3-center w3-border w3-round w3-margin"
+        action="{% url 'vote' list_id %}"
+        method="post">
+        {% csrf_token %}
+        <input type="hidden" name="winner" value="{{ item_1.id }}">
+        <input type="hidden" name="left" value="{{ item_1.id }}">
+        <input type="hidden" name="right" value="{{ item_2.id }}">
+      <button class="w3-cell w3-cell-middle w3-center w3-margin w3-border-0"
+       type="submit" style="background: None; height:100%">
+        <div class="choice-content w3-container">
+          <img class="vote-item-img" src="{{ item_1.image.url }}">
+          <div class="vote-item-label">
+            {{ item_1.label }}
+          </div>
+        </div>
+      </button>
+      </form>
+
+      <div class="w3-cell w3-cell-middle w3-center w3-margin" style="width: 10%">
+        - OR -
+      </div>
+
+      <form class="w3-cell w3-cell-middle w3-center w3-border w3-round w3-margin"
+        action="{% url 'vote' list_id %}"
+        method="post">
+        {% csrf_token %}
+        <input type="hidden" name="winner" value="{{ item_2.id }}">
+        <input type="hidden" name="left" value="{{ item_1.id }}">
+        <input type="hidden" name="right" value="{{ item_2.id }}">
+      <button class="w3-cell w3-cell-middle w3-center w3-margin w3-border-0"
+       type="submit" style="background: None; height:100%">
+        <div class="choice-content w3-container">
+          <img class="vote-item-img" src="{{ item_2.image.url }}">
+          <div class="vote-item-label">
+            {{ item_2.label }}
+          </div>
+        </div>
+      </button>
+      </form>
+      </a>
+    </div>
+  </div>
+{% endblock %}

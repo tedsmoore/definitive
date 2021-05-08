@@ -1,4 +1,5 @@
 import json
+import random
 
 from django.http import HttpResponse, JsonResponse
 from django.core import serializers
@@ -7,7 +8,9 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Max
 from django.views import View
 
-from definitive.models import RankList
+from users.models import CustomUser
+
+from definitive.models import RankList, RankResponse
 from definitive.forms import AddRankItemForm, AddRankListForm
 
 
@@ -74,6 +77,36 @@ def login(request):
 
 class VoteView(View):
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request, list_id, *args, **kwargs):
+        ranklist = RankList.objects.get(id=list_id)
+        item_1 = self.random_item(ranklist)
+        item_2 = self.random_item(ranklist)
+        while item_2 == item_1:
+            item_2 = self.random_item(ranklist)
+        context = {
+            'list_id': list_id,
+            'item_1': item_1,
+            'item_2': item_2
+        }
+        return render(request, 'definitive/vote.html', context)
 
-        return render(request, 'definitive/choices.html', {})
+    def post(self, request, list_id, *args, **kwargs):
+        if request.user.is_authenticated:
+            user = CustomUser.objects.get(request.user.id)
+        else:
+            user = None
+        left = request.POST.get('left')
+        right = request.POST.get('right')
+        winner = request.POST.get('winner')
+        RankResponse.objects.create(
+            user=user,
+            left_id=left,
+            right_id=right,
+            winner_id=winner,
+        )
+        return self.get(request, list_id=list_id)
+
+    @staticmethod
+    def random_item(ranklist):
+        items = ranklist.items.all()
+        return random.choice(items)

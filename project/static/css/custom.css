@@ -44,3 +44,9 @@ img.item-image {
     min-width: 25px;
 }
 
+.vote-item-img {
+    width: 25%;
+}
+div.vote-item-label {
+    font-size: 2rem;
+}
