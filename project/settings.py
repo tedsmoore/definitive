@@ -46,11 +46,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social_django',
     'definitive',
     'users'
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+]
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '760832923219-js4p444h794rk0jcjt2k7e0jblfbma7o.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '0V9gSnjYMnm_AkvZRRmg9IeX'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

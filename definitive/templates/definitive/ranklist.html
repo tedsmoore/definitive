@@ -1,56 +1,10 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Definitive | {{ title }}{% endblock %}
 
 {% block page_style %}
-  <style>
-  div.content {
-      max-width: 992px;
-      margin:54px auto;
-  }
-  div.ranklist-header {
-      margin: auto;
-      color: #9c27b0;
-      font-weight: bold;
-      font-size: 36px;
-  }
-  div.rank {
-      width: 10%;
-      font-size: 2rem;
-  }
-  div.item-image{
-      width: 25%;
-  }
-  div.item-label{
-      width: 25%;
-      font-size: 2rem;
-  }
-  div.item-score {
-      font-size: 2rem;
-      font-weight: bold;
-      color: orangered;
-  }
-  div.cell-label {
-      font-size: 1rem;
-      font-style: italic;
-      font-weight: bold;
-      color: #9c27b0;
-  }
-  div.item-record {
-      font-size: 2rem;
-      color: orangered;
-  }
-  div.cell-label {
-      font-size: 1rem;
-      font-style: italic;
-      font-weight: bold;
-  }
-  img.item-image {
-      max-width: 200px;
-      min-width: 25px;
-  }
-
-  </style>
+  <link rel="stylesheet" href="{% static 'css/custom.css' %}">
 {% endblock %}
 
 {% block content %}

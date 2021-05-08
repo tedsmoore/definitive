@@ -5,12 +5,13 @@ from django.core import serializers
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.db.models import Max
+from django.views import View
 
 from definitive.models import RankList
 from definitive.forms import AddRankItemForm, AddRankListForm
 
 
-def index(request):
+def home(request):
     list_id = RankList.objects.aggregate(Max('id'))['id__max']
     return redirect('ranklist', list_id)
 
@@ -65,3 +66,14 @@ def data_only_view(request, list_id):
 
 def data_from_ajax(request):
     return render(request, 'definitive/data_from_ajax.html', {})
+
+
+def login(request):
+  return render(request, 'definitive/login.html')
+
+
+class VoteView(View):
+
+    def get(self, request, *args, **kwargs):
+
+        return render(request, 'definitive/choices.html', {})
